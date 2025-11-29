@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 class MapSchemaTest {
     @Test
@@ -14,7 +16,7 @@ class MapSchemaTest {
         var schema = new MapSchema();
 
         assertTrue(schema.isValid(null));
-        assertTrue(schema.isValid(Map.of("1","2","3","4")));
+        assertTrue(schema.isValid(Map.of("1", "2", "3", "4")));
     }
 
     @Test
@@ -25,7 +27,7 @@ class MapSchemaTest {
         schema.required();
 
         assertFalse(schema.isValid(null));
-        assertTrue(schema.isValid(Map.of("1","2","3","4")));
+        assertTrue(schema.isValid(Map.of("1", "2", "3", "4")));
     }
 
     @Test
@@ -38,8 +40,8 @@ class MapSchemaTest {
 
         assertTrue(schema.isValid(null));
         assertFalse(schema.isValid(Map.of()));
-        assertTrue(schema.isValid(Map.of("1","2","3","4")));
-        assertFalse(schema.isValid(Map.of("1","2","3","4", "5", "6")));
+        assertTrue(schema.isValid(Map.of("1", "2", "3", "4")));
+        assertFalse(schema.isValid(Map.of("1", "2", "3", "4",  "5",  "6")));
     }
 
     @Test
@@ -52,8 +54,8 @@ class MapSchemaTest {
 
         assertFalse(schema.isValid(null));
         assertFalse(schema.isValid(Map.of()));
-        assertTrue(schema.isValid(Map.of("1","2","3","4")));
-        assertFalse(schema.isValid(Map.of("1","2","3","4", "5", "6")));
+        assertTrue(schema.isValid(Map.of("1", "2", "3", "4")));
+        assertFalse(schema.isValid(Map.of("1", "2", "3", "4",  "5",  "6")));
     }
 
     @Test
@@ -65,8 +67,8 @@ class MapSchemaTest {
                 "age", new NumberSchema().required().positive().range(10, 20)
         );
         var checkedMap = Map.of(
-                "name", "Vlad",
-                "age", 15
+                "name",  "Vlad",
+                "age",  15
         );
 
         schema.shape(schemasMap);
