@@ -30,6 +30,6 @@ public class StringSchema extends BaseSchemaRequired<StringSchema> implements Ba
             return false;
         }
 
-        return subString == null || checkedString.contains(subString);
+        return checkedString.contains(subString);
     }
 }
