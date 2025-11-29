@@ -30,11 +30,11 @@ class MapSchemaTest {
 
     @Test
     @DisplayName("Проверка на размер")
-    void sizeOfTest() {
+    void sizeofTest() {
         var schema = new MapSchema();
         var size = 2;
 
-        schema.sizeOf(size);
+        schema.sizeof(size);
 
         assertTrue(schema.isValid(null));
         assertFalse(schema.isValid(Map.of()));
@@ -48,7 +48,7 @@ class MapSchemaTest {
         var schema = new MapSchema();
         var size = 2;
 
-        schema.required().sizeOf(size);
+        schema.required().sizeof(size);
 
         assertFalse(schema.isValid(null));
         assertFalse(schema.isValid(Map.of()));

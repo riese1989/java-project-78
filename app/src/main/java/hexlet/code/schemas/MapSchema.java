@@ -6,7 +6,7 @@ public class MapSchema extends BaseSchemaRequired<MapSchema> implements BaseSche
     private int size;
     private Map<Object, BaseSchema> schemas;
 
-    public MapSchema sizeOf(int size) {
+    public MapSchema sizeof(int size) {
         this.size = size;
 
         return this;
