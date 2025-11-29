@@ -22,7 +22,7 @@ public class StringSchema extends BaseSchemaRequired<StringSchema> implements Ba
             return false;
         }
 
-        if (checkedString == null) {
+        if (checkedString == null || checkedString.isEmpty()) {
             return true;
         }
 
