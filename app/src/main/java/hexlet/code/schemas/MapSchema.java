@@ -2,24 +2,26 @@ package hexlet.code.schemas;
 
 import java.util.Map;
 
-public class MapSchema extends BaseSchemaRequired<MapSchema> implements BaseSchema<Map> {
+public final class MapSchema extends BaseSchemaRequired<MapSchema> implements BaseSchema<Map> {
+    @SuppressWarnings("HiddenField")
     private int size;
+    @SuppressWarnings("HiddenField")
     private Map<Object, BaseSchema> schemas;
 
-    public MapSchema sizeof(int size) {
+    public final MapSchema sizeof(int size) {
         this.size = size;
 
         return this;
     }
 
-    public MapSchema shape(Map schemas) {
+    public final MapSchema shape(Map schemas) {
         this.schemas = schemas;
 
         return this;
     }
 
     @Override
-    public boolean isValid(Map map) {
+    public final boolean isValid(Map map) {
         if (isRequired() && map == null) {
             return false;
         }

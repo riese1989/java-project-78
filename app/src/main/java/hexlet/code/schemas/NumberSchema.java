@@ -4,20 +4,20 @@ public class NumberSchema extends BaseSchemaRequired<NumberSchema> implements Ba
     private boolean isPositive;
     private Range range;
 
-    public NumberSchema positive() {
+    public final NumberSchema positive() {
         isPositive = true;
 
         return this;
     }
 
-    public NumberSchema range(int minRange, int maxRange) {
+    public final NumberSchema range(int minRange, int maxRange) {
         range = new Range(minRange, maxRange);
 
         return this;
     }
 
     @Override
-    public boolean isValid(Integer checkedNumber) {
+    public final boolean isValid(Integer checkedNumber) {
         if (isRequired() && checkedNumber == null) {
             return false;
         }

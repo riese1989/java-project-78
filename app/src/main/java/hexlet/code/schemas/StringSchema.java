@@ -1,23 +1,25 @@
 package hexlet.code.schemas;
 
 public class StringSchema extends BaseSchemaRequired<StringSchema> implements BaseSchema<String> {
+    @SuppressWarnings("HiddenField")
     private int minLength;
+    @SuppressWarnings("HiddenField")
     private String subString;
 
-    public StringSchema minLength(int minLength) {
+    public final StringSchema minLength(int minLength) {
         this.minLength = minLength;
 
         return this;
     }
 
-    public StringSchema contains(String subString) {
+    public final StringSchema contains(String subString) {
         this.subString = subString;
 
         return this;
     }
 
     @Override
-    public boolean isValid(String checkedString) {
+    public final boolean isValid(String checkedString) {
         if (isRequired() && (checkedString == null || checkedString.isEmpty())) {
             return false;
         }
