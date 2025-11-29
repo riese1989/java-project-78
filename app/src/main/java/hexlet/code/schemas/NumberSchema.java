@@ -1,23 +1,23 @@
 package hexlet.code.schemas;
 
-public final class NumberSchema extends BaseSchemaRequired<NumberSchema> implements BaseSchema<Integer>{
+public final class NumberSchema extends BaseSchemaRequired<NumberSchema> implements BaseSchema<Integer> {
     private boolean isPositive;
     private Range range;
 
-    public final NumberSchema positive() {
+    public NumberSchema positive() {
         isPositive = true;
 
         return this;
     }
 
-    public final NumberSchema range(int minRange, int maxRange) {
+    public NumberSchema range(int minRange, int maxRange) {
         range = new Range(minRange, maxRange);
 
         return this;
     }
 
     @Override
-    public final boolean isValid(Integer checkedNumber) {
+    public boolean isValid(Integer checkedNumber) {
         if (isRequired() && checkedNumber == null) {
             return false;
         }
@@ -37,5 +37,5 @@ public final class NumberSchema extends BaseSchemaRequired<NumberSchema> impleme
         return checkedNumber >= range.minRange && checkedNumber <= range.maxRange;
     }
 
-    private record Range(int minRange, int maxRange) {}
+    private record Range(int minRange, int maxRange) { }
 }

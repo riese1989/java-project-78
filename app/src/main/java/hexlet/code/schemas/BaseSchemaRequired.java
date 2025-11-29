@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public abstract class BaseSchemaRequired <T extends BaseSchema> {
+public abstract class BaseSchemaRequired<T extends BaseSchema> {
     private boolean isRequired;
 
     public final T required() {
@@ -9,7 +9,7 @@ public abstract class BaseSchemaRequired <T extends BaseSchema> {
         return (T) this;
     }
 
-    public boolean isRequired() {
+    public final boolean isRequired() {
         return isRequired;
     }
 }
