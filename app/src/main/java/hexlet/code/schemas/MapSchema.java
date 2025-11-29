@@ -17,7 +17,7 @@ public class MapSchema extends BaseSchemaRequired<MapSchema> implements BaseSche
             return false;
         }
 
-        if (map == null) {
+        if (map == null || size == 0) {
             return true;
         }
 
