@@ -22,6 +22,10 @@ public class StringSchema extends BaseSchemaRequired<StringSchema> implements Ba
             return false;
         }
 
+        if (checkedString == null) {
+            return true;
+        }
+
         if (minLength != 0 && checkedString.length() < minLength) {
             return false;
         }
