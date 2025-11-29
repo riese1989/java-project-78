@@ -18,29 +18,7 @@ public class StringSchema extends BaseSchemaRequired<StringSchema> implements Ba
 
     @Override
     public boolean isValid(String checkedString) {
-
-        String answer;
-
-        if (checkedString == null) {
-            answer = "'NuLl'";
-        } else
-
-        if (checkedString.isEmpty()) {
-            answer = "'EmPtY'";
-        }
-
-        else {
-            answer = checkedString;
-        }
-
-        System.out.println("May string is '%s'".formatted(answer));
-        System.out.println("Settings:");
-        System.out.println("isRequired " + isRequired());
-        System.out.println("MinLength " + minLength);
-        System.out.println("Contains " + subString);
-
-
-        if (isRequired() && checkedString == null) {
+        if (isRequired() && (checkedString == null || checkedString.isEmpty())) {
             return false;
         }
 
