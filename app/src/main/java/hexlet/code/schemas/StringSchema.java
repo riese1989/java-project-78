@@ -1,15 +1,8 @@
-package hexlet.code;
+package hexlet.code.schemas;
 
-public class StringSchema {
-    private boolean isRequired;
+public class StringSchema extends BaseSchemaRequired<StringSchema> implements BaseSchema<String> {
     private int minLength;
     private String subString;
-
-    public StringSchema required() {
-        isRequired = true;
-
-        return this;
-    }
 
     public StringSchema minLength(int minLength) {
         this.minLength = minLength;
@@ -23,8 +16,9 @@ public class StringSchema {
         return this;
     }
 
+    @Override
     public boolean isValid(String checkedString) {
-        if (isRequired && checkedString == null) {
+        if (isRequired() && checkedString == null) {
             return false;
         }
 
