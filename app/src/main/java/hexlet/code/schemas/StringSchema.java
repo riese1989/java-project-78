@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public class StringSchema extends BaseSchemaRequired<StringSchema> implements BaseSchema<String> {
+public final class StringSchema extends BaseSchemaRequired<StringSchema> implements BaseSchema<String> {
     @SuppressWarnings("HiddenField")
     private int minLength;
     @SuppressWarnings("HiddenField")
