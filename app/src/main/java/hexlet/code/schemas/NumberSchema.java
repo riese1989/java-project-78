@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public final class NumberSchema extends BaseSchemaRequired<NumberSchema> implements BaseSchema<Integer> {
+public final class NumberSchema extends BaseSchema<Integer, NumberSchema> {
     private boolean isPositive;
     private Range range;
 
@@ -17,7 +17,7 @@ public final class NumberSchema extends BaseSchemaRequired<NumberSchema> impleme
     }
 
     @Override
-    public boolean isValid(Integer checkedNumber) {
+    public boolean isVerified(Integer checkedNumber) {
         if (isRequired() && checkedNumber == null) {
             return false;
         }
