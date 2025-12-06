@@ -2,7 +2,7 @@ package hexlet.code.schemas;
 
 import java.util.Map;
 
-public final class MapSchema extends BaseSchema<Map, MapSchema> {
+public final class MapSchema extends BaseSchemaRequired<MapSchema> implements BaseSchema<Map> {
     private int size;
     private Map<Object, BaseSchema> schemas;
 
@@ -19,7 +19,7 @@ public final class MapSchema extends BaseSchema<Map, MapSchema> {
     }
 
     @Override
-    public boolean isVerified(Map map) {
+    public boolean isValid(Map map) {
         if (isRequired() && map == null) {
             return false;
         }
