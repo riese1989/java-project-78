@@ -7,7 +7,7 @@ public final class MapSchema extends BaseSchema<Map> {
     public MapSchema sizeof(int size) {
         predicate = m -> m == null || m.size() == size;
 
-        checks.put("sizeOf", predicate);
+        addCheck("sizeOf", predicate);
 
         return this;
     }
@@ -15,7 +15,7 @@ public final class MapSchema extends BaseSchema<Map> {
     public MapSchema required() {
         predicate = s -> s != null && !s.isEmpty();
 
-        checks.put("required", predicate);
+        addCheck("required", predicate);
 
         return this;
     }
@@ -34,7 +34,7 @@ public final class MapSchema extends BaseSchema<Map> {
             predicate.and(check);
         }
 
-        checks.put("shape", predicate);
+        addCheck("shape", predicate);
 
         return this;
     }

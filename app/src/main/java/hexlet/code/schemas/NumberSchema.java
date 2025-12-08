@@ -7,7 +7,7 @@ public final class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema positive() {
         predicate = n -> n == null || n > 0;
 
-        checks.put("positive", predicate);
+        addCheck("positive", predicate);
 
         return this;
     }
@@ -15,7 +15,7 @@ public final class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema range(int minRange, int maxRange) {
         predicate = n -> n >= minRange && n <= maxRange;
 
-        checks.put("range", predicate);
+        addCheck("range", predicate);
 
         return this;
     }
@@ -23,7 +23,7 @@ public final class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema required() {
         predicate = Objects::nonNull;
 
-        checks.put("required", predicate);
+        addCheck("required", predicate);
 
         return this;
     }
