@@ -3,6 +3,7 @@ package hexlet.code.schemas;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -62,10 +63,11 @@ class MapSchemaTest {
     @DisplayName("Проверка shape")
     void shapeTest() {
         var schema = new MapSchema();
-        var schemasMap = Map.of(
-                "name", new StringSchema().required().minLength(2).contains("ad").minLength(1),
-                "age", new NumberSchema().required().positive().range(10, 20)
-        );
+        var schemasMap = new HashMap<String, BaseSchema>();
+
+        schemasMap.put("name", new StringSchema().required().minLength(2).contains("ad").minLength(1));
+        schemasMap.put("age", new NumberSchema().required().positive().range(10, 20));
+
         var checkedMap = Map.of(
                 "name",  "Vlad",
                 "age",  15

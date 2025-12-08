@@ -1,39 +1,27 @@
 package hexlet.code.schemas;
 
-public final class StringSchema extends BaseSchemaRequired<StringSchema> implements BaseSchema<String> {
-    private int minLength;
-    private String subString;
+public final class StringSchema extends BaseSchema<String> {
+    public StringSchema minLength(int minLength) {
+        predicate = s -> minLength != 0 && s.length() >= minLength;
 
-    public StringSchema minLength(int minLengthNew) {
-        minLength = minLengthNew;
-
-        return this;
-    }
-
-    public StringSchema contains(String subStringNew) {
-        subString = subStringNew;
+        checks.put("minLength", predicate);
 
         return this;
     }
 
-    @Override
-    public boolean isValid(String checkedString) {
-        if (isRequired() && (checkedString == null || checkedString.isEmpty())) {
-            return false;
-        }
+    public StringSchema contains(String subString) {
+        predicate = s -> subString == null || subString.isEmpty() || s.contains(subString);
 
-        if (checkedString == null || checkedString.isEmpty()) {
-            return true;
-        }
+        checks.put("contains", predicate);
 
-        if (minLength != 0 && checkedString.length() < minLength) {
-            return false;
-        }
+        return this;
+    }
 
-        if (subString == null || subString.isEmpty()) {
-            return true;
-        }
+    public StringSchema required() {
+        predicate = s -> s != null && !s.isEmpty();
 
-        return checkedString.contains(subString);
+        checks.put("required", predicate);
+
+        return this;
     }
 }

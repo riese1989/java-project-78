@@ -1,49 +1,41 @@
 package hexlet.code.schemas;
 
 import java.util.Map;
+import java.util.function.Predicate;
 
-public final class MapSchema extends BaseSchemaRequired<MapSchema> implements BaseSchema<Map> {
-    private int size;
-    private Map<Object, BaseSchema> schemas;
+public final class MapSchema extends BaseSchema<Map> {
+    public MapSchema sizeof(int size) {
+        predicate = m -> m == null || m.size() == size;
 
-    public MapSchema sizeof(int newSize) {
-        size = newSize;
-
-        return this;
-    }
-
-    public  MapSchema shape(Map newSchemas) {
-        schemas = newSchemas;
+        checks.put("sizeOf", predicate);
 
         return this;
     }
 
-    @Override
-    public boolean isValid(Map map) {
-        if (isRequired() && map == null) {
-            return false;
-        }
+    public MapSchema required() {
+        predicate = s -> s != null && !s.isEmpty();
 
-        if (map == null || size == 0) {
-            return true;
-        }
+        checks.put("required", predicate);
 
-        if (schemas != null) {
-            for (var entry : schemas.entrySet()) {
-                var checkedKey = entry.getKey();
-                var schema = entry.getValue();
-                var checkedValue = map.get(checkedKey);
+        return this;
+    }
 
-                if (map.get(checkedKey) == null) {
-                    continue;
-                }
+    public  MapSchema shape(Map<String, BaseSchema> schemas) {
 
-                if (!schema.isValid(checkedValue)) {
-                    return false;
-                }
+        for (var entry : schemas.entrySet()) {
+            var key = entry.getKey();
+            var schema = entry.getValue();
+            Predicate<Map> check = m -> m.get(key) == null || schema.isValid(m.get(key));
+
+            if(predicate == null) {
+                predicate = check;
             }
+
+            predicate.and(check);
         }
 
-        return map.size() == size;
+        checks.put("shape", predicate);
+
+        return this;
     }
 }

@@ -1,41 +1,30 @@
 package hexlet.code.schemas;
 
-public final class NumberSchema extends BaseSchemaRequired<NumberSchema> implements BaseSchema<Integer> {
-    private boolean isPositive;
-    private Range range;
+import java.util.Objects;
+
+public final class NumberSchema extends BaseSchema<Integer> {
 
     public NumberSchema positive() {
-        isPositive = true;
+        predicate = n -> n > 0;
+
+        checks.put("positive", predicate);
 
         return this;
     }
 
     public NumberSchema range(int minRange, int maxRange) {
-        range = new Range(minRange, maxRange);
+        predicate = n -> n >= minRange && n <= maxRange;
+
+        checks.put("range", predicate);
 
         return this;
     }
 
-    @Override
-    public boolean isValid(Integer checkedNumber) {
-        if (isRequired() && checkedNumber == null) {
-            return false;
-        }
+    public NumberSchema required() {
+        predicate = Objects::nonNull;
 
-        if (checkedNumber == null) {
-            return true;
-        }
+        checks.put("required", predicate);
 
-        if (isPositive && checkedNumber <= 0) {
-            return false;
-        }
-
-        if (range == null) {
-            return true;
-        }
-
-        return checkedNumber >= range.minRange && checkedNumber <= range.maxRange;
+        return this;
     }
-
-    private record Range(int minRange, int maxRange) { }
 }
