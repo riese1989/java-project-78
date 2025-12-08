@@ -7,10 +7,13 @@ import java.util.function.Predicate;
 public abstract class BaseSchema<T> {
     private Map<String, Predicate<T>> checks = new LinkedHashMap<>();
     protected Predicate<T> predicate;
+    public String expression;
 
     protected final void addCheck(String name, Predicate<T> validate) {
         checks.put(name, validate);
     }
+
+    protected abstract void exp();
 
     public final boolean isValid(Object value) {
         System.out.println("=====================\n" + value);

@@ -9,6 +9,8 @@ public final class NumberSchema extends BaseSchema<Integer> {
 
         addCheck("positive", predicate);
 
+        expression += ".positive()";
+
         return this;
     }
 
@@ -16,6 +18,8 @@ public final class NumberSchema extends BaseSchema<Integer> {
         predicate = n -> n >= minRange && n <= maxRange;
 
         addCheck("range", predicate);
+
+        expression += ".range(" + minRange + "," + maxRange + ")";
 
         return this;
     }
@@ -25,6 +29,13 @@ public final class NumberSchema extends BaseSchema<Integer> {
 
         addCheck("required", predicate);
 
+        expression += ".required()";
+
         return this;
+    }
+
+    @Override
+    protected void exp() {
+        expression = "new NumberSchema()";
     }
 }

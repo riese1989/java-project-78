@@ -9,6 +9,8 @@ public final class MapSchema extends BaseSchema<Map> {
 
         addCheck("sizeOf", predicate);
 
+        expression += ".sizeOf(" + size + ")";
+
         return this;
     }
 
@@ -16,6 +18,8 @@ public final class MapSchema extends BaseSchema<Map> {
         predicate = s -> s != null && !s.isEmpty();
 
         addCheck("required", predicate);
+
+        expression += ".required()";
 
         return this;
     }
@@ -28,6 +32,10 @@ public final class MapSchema extends BaseSchema<Map> {
         for (var entry : schemas.entrySet()) {
             var key = entry.getKey();
             var schema = entry.getValue();
+
+            System.out.println("-----------------------");
+            System.out.println(key);
+            System.out.println(schema.expression);
             Predicate<Map> check = m -> m.get(key) == null || schema.isValid(m.get(key));
 
             if(predicate == null) {
@@ -40,5 +48,10 @@ public final class MapSchema extends BaseSchema<Map> {
         addCheck("shape", predicate);
 
         return this;
+    }
+
+    @Override
+    protected void exp() {
+        expression = "new MapSchema()";
     }
 }
