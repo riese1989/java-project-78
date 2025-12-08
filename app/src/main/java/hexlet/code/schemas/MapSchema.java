@@ -20,7 +20,7 @@ public final class MapSchema extends BaseSchema<Map> {
         return this;
     }
 
-    public  MapSchema shape(Map<String, BaseSchema> schemas) {
+    public MapSchema shape(Map<String, ? extends BaseSchema<?>> schemas) {
 
         for (var entry : schemas.entrySet()) {
             var key = entry.getKey();

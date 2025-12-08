@@ -13,11 +13,11 @@ public abstract class BaseSchema<T> {
         checks.put(name, validate);
     }
 
-    public final boolean isValid(T value) {
+    public final boolean isValid(Object value) {
         for (var entry : checks.entrySet()) {
             var check = entry.getValue();
 
-            if (!check.test(value)) {
+            if (!check.test((T) value)) {
                 return false;
             }
         }

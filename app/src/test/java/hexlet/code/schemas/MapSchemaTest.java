@@ -63,10 +63,13 @@ class MapSchemaTest {
     @DisplayName("Проверка shape")
     void shapeTest() {
         var schema = new MapSchema();
-        var schemasMap = new HashMap<String, BaseSchema>();
+        Map<String, BaseSchema<?>> schemasMap = new HashMap<>();
 
         schemasMap.put("name", new StringSchema().required().minLength(2).contains("ad").minLength(1));
         schemasMap.put("age", new NumberSchema().required().positive().range(10, 20));
+
+        // Ваш код
+
 
         var checkedMap = Map.of(
                 "name",  "Vlad",
