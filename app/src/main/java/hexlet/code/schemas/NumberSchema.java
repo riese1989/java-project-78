@@ -5,7 +5,7 @@ import java.util.Objects;
 public final class NumberSchema extends BaseSchema<Integer> {
 
     public NumberSchema positive() {
-        predicate = n -> n > 0;
+        predicate = n -> n == null || n > 0;
 
         checks.put("positive", predicate);
 
