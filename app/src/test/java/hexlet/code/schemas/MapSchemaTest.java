@@ -68,8 +68,6 @@ class MapSchemaTest {
         schemasMap.put("name", new StringSchema().required().minLength(2).contains("ad").minLength(1));
         schemasMap.put("age", new NumberSchema().required().positive().range(10, 20));
 
-        // Ваш код
-
 
         var checkedMap = Map.of(
                 "name",  "Vlad",
