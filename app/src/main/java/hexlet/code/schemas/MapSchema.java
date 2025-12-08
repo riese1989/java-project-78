@@ -21,6 +21,9 @@ public final class MapSchema extends BaseSchema<Map> {
     }
 
     public MapSchema shape(Map<String, ? extends BaseSchema<?>> schemas) {
+        if (schemas == null || schemas.isEmpty()) {
+            return this;
+        }
 
         for (var entry : schemas.entrySet()) {
             var key = entry.getKey();
