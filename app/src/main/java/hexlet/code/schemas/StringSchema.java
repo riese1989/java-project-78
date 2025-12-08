@@ -1,6 +1,11 @@
 package hexlet.code.schemas;
 
 public final class StringSchema extends BaseSchema<String> {
+
+    public StringSchema() {
+        expression = "new StringSchema()";
+    }
+
     public StringSchema minLength(int minLength) {
         predicate = s -> minLength != 0 && s.length() >= minLength;
 
@@ -25,10 +30,5 @@ public final class StringSchema extends BaseSchema<String> {
         expression += ".required()";
 
         return this;
-    }
-
-    @Override
-    protected void exp() {
-        expression = "new StringSchema()";
     }
 }

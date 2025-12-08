@@ -4,6 +4,10 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema<Map> {
+    public MapSchema() {
+        expression = "new MapSchema()";
+    }
+
     public MapSchema sizeof(int size) {
         predicate = m -> m == null || m.size() == size;
 
@@ -48,10 +52,5 @@ public final class MapSchema extends BaseSchema<Map> {
         addCheck("shape", predicate);
 
         return this;
-    }
-
-    @Override
-    protected void exp() {
-        expression = "new MapSchema()";
     }
 }

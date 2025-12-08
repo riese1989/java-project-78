@@ -3,6 +3,9 @@ package hexlet.code.schemas;
 import java.util.Objects;
 
 public final class NumberSchema extends BaseSchema<Integer> {
+    public NumberSchema() {
+        expression = "new NumberSchema()";
+    }
 
     public NumberSchema positive() {
         predicate = n -> n == null || n > 0;
@@ -32,10 +35,5 @@ public final class NumberSchema extends BaseSchema<Integer> {
         expression += ".required()";
 
         return this;
-    }
-
-    @Override
-    protected void exp() {
-        expression = "new NumberSchema()";
     }
 }

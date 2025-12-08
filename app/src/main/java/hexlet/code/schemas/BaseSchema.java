@@ -13,10 +13,9 @@ public abstract class BaseSchema<T> {
         checks.put(name, validate);
     }
 
-    protected abstract void exp();
-
     public final boolean isValid(Object value) {
         System.out.println("=====================\n" + value);
+        System.out.println(expression);
         for (var entry : checks.entrySet()) {
             var check = entry.getValue();
 
