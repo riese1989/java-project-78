@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 public abstract class BaseSchema<T> {
     private Map<String, Predicate<T>> checks = new LinkedHashMap<>();
     protected Predicate<T> predicate;
-    public String expression;
 
     protected final void addCheck(String name, Predicate<T> validate) {
         checks.put(name, validate);

@@ -5,16 +5,11 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema<Map> {
-    public MapSchema() {
-        expression = "new MapSchema()";
-    }
 
     public MapSchema sizeof(int size) {
         predicate = m -> m == null || m.size() == size;
 
         addCheck("sizeOf", predicate);
-
-        expression += ".sizeOf(" + size + ")";
 
         return this;
     }
@@ -23,8 +18,6 @@ public final class MapSchema extends BaseSchema<Map> {
         predicate = Objects::nonNull;
 
         addCheck("required", predicate);
-
-        expression += ".required()";
 
         return this;
     }
@@ -42,9 +35,11 @@ public final class MapSchema extends BaseSchema<Map> {
 
             if(predicate == null) {
                 predicate = check;
+
+                continue;
             }
 
-            predicate.and(check);
+            predicate = predicate.and(check);
         }
 
         addCheck("shape", predicate);
