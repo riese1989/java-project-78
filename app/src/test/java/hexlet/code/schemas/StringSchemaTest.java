@@ -15,6 +15,7 @@ class StringSchemaTest {
         var schema = new StringSchema();
 
         assertTrue(schema.isValid(null));
+        assertTrue(schema.isValid(""));
         assertTrue(schema.isValid("123"));
     }
 
@@ -26,6 +27,7 @@ class StringSchemaTest {
         schema.required();
 
         assertFalse(schema.isValid(null));
+        assertFalse(schema.isValid(""));
         assertTrue(schema.isValid("123"));
     }
 
