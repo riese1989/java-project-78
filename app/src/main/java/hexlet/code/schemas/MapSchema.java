@@ -33,7 +33,7 @@ public final class MapSchema extends BaseSchema<Map> {
 
             Predicate<Map> check = m -> m.get(key) == null || schema.isValid(m.get(key));
 
-            if(predicate == null) {
+            if (predicate == null) {
                 predicate = check;
 
                 continue;
