@@ -38,9 +38,6 @@ public final class MapSchema extends BaseSchema<Map> {
             var key = entry.getKey();
             var schema = entry.getValue();
 
-            System.out.println("-----------------------");
-            System.out.println(key);
-            System.out.println(schema.expression);
             Predicate<Map> check = m -> m.get(key) == null || schema.isValid(m.get(key));
 
             if(predicate == null) {
