@@ -4,12 +4,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-@SuppressWarnings("unchecked")
 public final class MapSchema extends BaseSchema<Map> {
-    private Predicate<Map> predicate;
-
     public MapSchema sizeof(int size) {
-        predicate = m -> m == null || m.size() == size;
+        Predicate<Map> predicate = m -> m == null || m.size() == size;
 
         addCheck("sizeOf", predicate);
 
@@ -17,7 +14,7 @@ public final class MapSchema extends BaseSchema<Map> {
     }
 
     public MapSchema required() {
-        predicate = Objects::nonNull;
+        Predicate<Map> predicate = Objects::nonNull;
 
         addCheck("required", predicate);
 
@@ -25,6 +22,8 @@ public final class MapSchema extends BaseSchema<Map> {
     }
 
     public MapSchema shape(Map<String, ? extends BaseSchema<?>> schemas) {
+        Predicate<Map> predicate = null;
+
         if (schemas == null || schemas.isEmpty()) {
             return this;
         }
