@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
 
+@SuppressWarnings("unchecked")
 public final class MapSchema extends BaseSchema<Map> {
     private Predicate<Map> predicate;
 
