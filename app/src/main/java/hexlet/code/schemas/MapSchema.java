@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema<Map> {
+    private Predicate<Map> predicate;
 
     public MapSchema sizeof(int size) {
         predicate = m -> m == null || m.size() == size;
@@ -29,7 +30,7 @@ public final class MapSchema extends BaseSchema<Map> {
 
         for (var entry : schemas.entrySet()) {
             var key = entry.getKey();
-            var schema = entry.getValue();
+            BaseSchema schema = entry.getValue();
 
             Predicate<Map> check = m -> m.get(key) == null || schema.isValid(m.get(key));
 

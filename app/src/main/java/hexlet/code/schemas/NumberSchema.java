@@ -1,8 +1,11 @@
 package hexlet.code.schemas;
 
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 public final class NumberSchema extends BaseSchema<Integer> {
+    private Predicate<Integer> predicate;
 
     public NumberSchema positive() {
         predicate = n -> n == null || n > 0;

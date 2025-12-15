@@ -1,6 +1,9 @@
 package hexlet.code.schemas;
 
+import java.util.function.Predicate;
+
 public final class StringSchema extends BaseSchema<String> {
+    private Predicate<String> predicate;
 
     public StringSchema minLength(int minLength) {
         predicate = s -> minLength != 0 && s.length() >= minLength;
